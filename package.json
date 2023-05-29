@@ -1,0 +1,12 @@
+{
+  "name": "personalprojects",
+  "version": "1.0.0",
+  "description": "Este repositorio lo utilizaré como uno principal donde iré subiendo pequeños proyectos personales que realice para hacer pruebas, pequeños retos, prácticas de funcionalidades nuevas, etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
