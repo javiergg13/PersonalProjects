@@ -17,3 +17,4 @@ Crear nuevo Proyecto:
 
 Heroicons
 unavatar.io
+canvas confetti => npm install canvas-confetti -E
