@@ -18,3 +18,9 @@ Crear nuevo Proyecto:
 Heroicons
 unavatar.io
 canvas confetti => npm install canvas-confetti -E
+inter standard => npm install standard -D (a nivel de proyecto y para congigurarlo, ir al package.json y añadir "devDependencies": {
+    "standard": "^17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
+  } y tener la extensión eslint)
