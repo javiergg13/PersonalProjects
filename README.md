@@ -24,3 +24,8 @@ inter standard => npm install standard -D (a nivel de proyecto y para congigurar
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
   } y tener la extensión eslint)
+
+Pasar proyecto a producción:
+  - npm run build
+  - buscar https://app.netlify.com/drop/
+  - dropear la carpeta dist creada en la misma ruta del proyecto en la página
