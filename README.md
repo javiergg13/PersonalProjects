@@ -23,9 +23,15 @@ inter standard => npm install standard -D (a nivel de proyecto y para congigurar
   },
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
-  } y tener la extensión eslint)
+  } y tener la extensión eslint) y/o? buscar extensión StandardJS
 
 Pasar proyecto a producción:
   - npm run build
   - buscar https://app.netlify.com/drop/
   - dropear la carpeta dist creada en la misma ruta del proyecto en la página
+
+Crear proyecto React desde 0 con vite:
+  - npm create vite@latest
+  - npm i @vitejs/plugin-react -E (intalar el plugin) -E es la versión exacta
+  - npm i react react-dom -E  (instalar react y react-dom)
+  - crear dentro del proyecto vite.config.js
