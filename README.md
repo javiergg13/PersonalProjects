@@ -49,3 +49,6 @@ Estilos básicos con Water.css:
   - ir a -> https://watercss.kognise.dev/
   - copiar el href -> https://cdn.jsdelivr.net/npm/water.css@2/out/water.css en el navegador
   - copiar esos estilos en el index.css
+
+Debounce:
+  - npm i just-debounce-it -E
