@@ -35,3 +35,12 @@ Crear proyecto React desde 0 con vite:
   - npm i @vitejs/plugin-react -E (intalar el plugin) -E es la versión exacta
   - npm i react react-dom -E  (instalar react y react-dom)
   - crear dentro del proyecto vite.config.js
+
+Tests con playwright:
+  - npm init playwright@latest
+  - eliminar test.examples
+  - test end to end (el más importante)
+  - hacer una constante con la ruta local
+  - cambiar extensión de playwright.config.js a .cjs
+  - cambiar primer import de example.spec.js
+  - iniciar los tests con -> npx playwright test
