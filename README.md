@@ -44,3 +44,8 @@ Tests con playwright:
   - cambiar extensión de playwright.config.js a .cjs
   - cambiar primer import de example.spec.js
   - iniciar los tests con -> npx playwright test
+
+Estilos básicos con Water.css:
+  - ir a -> https://watercss.kognise.dev/
+  - copiar el href -> https://cdn.jsdelivr.net/npm/water.css@2/out/water.css en el navegador
+  - copiar esos estilos en el index.css
