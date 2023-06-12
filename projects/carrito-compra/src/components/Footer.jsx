@@ -14,7 +14,6 @@ export function Footer () {
       </h4>
       <h5>Shooping Cart con useContext & useReducer</h5>
       {IS_DEVELOPMENT && JSON.stringify(filters, null, 2)}
-      {IS_DEVELOPMENT && JSON.stringify(cart, null, 2)}
     </footer>
   )
 }
