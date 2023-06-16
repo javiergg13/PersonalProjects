@@ -1,6 +1,4 @@
-const fetchComments = async (id) => {
-  await new Promise(resolve => setTimeout(resolve, 3000))
-
+const fetchComments = (id) => {
   return fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`, {
     next: {
       revalidate: 60
