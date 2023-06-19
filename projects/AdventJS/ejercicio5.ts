@@ -1,42 +1,32 @@
-function createCube(size: number) {
-  let resultadoFinal = ""
+function getMaxGifts(giftsCities, maxGifts, maxCities) {
+  giftsCities.sort((a, b) => b - a);
 
-  for (let i = 0; i < size; i++) {
-    for (let j = i; j < size - 1; j++) {
-      resultadoFinal += " "
+  let result = [];
+  let total = 0
+  let sum = 0;
+
+  function findCombination(startIndex, currentSum, currentCombination) {
+    if (currentSum > maxGifts || currentCombination.length > maxCities) {
+      return;
     }
 
-    for (let j = size - 1; j < size + i; j++) {
-      resultadoFinal += "/\\"
+    if (currentSum > sum) {
+      sum = currentSum;
+      result = currentCombination;
     }
 
-    for (let j = 0; j < size; j++) {
-      resultadoFinal += "_\\"
+    if (startIndex === giftsCities.length) {
+      return;
     }
 
-    resultadoFinal += "\n"
-  }
-
-  for (let i = 0; i < size; i++) {
-    for (let j = i + size; j > size; j--) {
-      resultadoFinal += " "
-    }
-
-    for (let j = i; j < size; j++) {
-      resultadoFinal += "\\/"
-    }
-
-    for (let j = 0; j < size; j++) {
-      resultadoFinal += "_/"
-    }
-
-    if (i + 1 < size) {
-      resultadoFinal += "\n"
+    for (let i = startIndex; i < giftsCities.length; i++) {
+      findCombination(i + 1, currentSum + giftsCities[i], [...currentCombination, giftsCities[i]]);
     }
   }
 
-  return resultadoFinal
+  findCombination(0, 0, []);
+
+  result.map(value => total += value)
+
+  return total;
 }
-
-console.log(createCube(4))
-

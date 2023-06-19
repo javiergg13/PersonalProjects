@@ -9,7 +9,7 @@ const fetchComments = (id) => {
     .then(response => response.json())
 }
 
-export default async function Post({ params }) {
+export default async function Post ({ params }) {
   const { id } = params
   const comments = await fetchComments(id)
 
