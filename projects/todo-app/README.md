@@ -1,0 +1,2 @@
+- [] Instalar linter => npx eslint --init || npm init @eslint/config
+- [] Instalar estilos https://github.com/tastejs/todomvc-app-css => npm i todomvc-app-css -E
