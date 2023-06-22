@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import confetti from "canvas-confetti"
 
 import { Square } from './components/Square'
@@ -15,9 +14,9 @@ export function App() {
 
   const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board')
-    return boardFromStorage 
-    ? JSON.parse(boardFromStorage) 
-    : Array(9).fill(null)
+    return boardFromStorage
+      ? JSON.parse(boardFromStorage)
+      : Array(9).fill(null)
   })
 
   const [winner, setWinner] = useState(null)
@@ -59,9 +58,9 @@ export function App() {
       <button onClick={resertGame}>Reset del juego</button>
       <section className='game'>
         {
-          board.map((square,index) => {
+          board.map((square, index) => {
             return (
-              <Square 
+              <Square
                 key={index}
                 index={index}
                 updateBoard={updateBoard}
@@ -74,14 +73,22 @@ export function App() {
       </section>
 
       <section className='turn'>
-        <Square isSelected={turn === TURNS.X}>
-          {TURNS.X}
-        </Square>
-        <Square isSelected={turn === TURNS.O}>
-          {TURNS.O}
-        </Square>
+        <div className='turn-x' style={{ color: turn === TURNS.X ? '' : 'transparent' }}>
+          <b>{'Tu turno ➡️'}</b>
+        </div>
+        <div className='turn-options'>
+          <Square isSelected={turn === TURNS.X}>
+            {TURNS.X}
+          </Square>
+          <Square isSelected={turn === TURNS.O}>
+            {TURNS.O}
+          </Square>
+        </div>
+        <div className='turn-0' style={{ color: turn === TURNS.O ? '' : 'transparent' }}>
+          <b>{'⬅️ Tu turno'}</b>
+        </div>
       </section>
-      <WinnerModal resertGame={resertGame} winner={winner}/>
+      <WinnerModal resertGame={resertGame} winner={winner} />
     </main>
   )
 }

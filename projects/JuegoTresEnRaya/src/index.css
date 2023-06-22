@@ -33,6 +33,7 @@ body {
   width: fit-content;
   margin: 40px auto;
   text-align: center;
+  max-width: 500px;
 }
 
 .board h1 {
@@ -66,17 +67,18 @@ body {
 
 .turn {
   display: flex;
-  justify-content: center;
   margin: 15px auto;
-  width: fit-content;
-  position: relative;
   border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 18px;
 }
 
 .turn .square,
 .winner .square {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   pointer-events: none;
   border-color: transparent;
 }
@@ -120,12 +122,16 @@ body {
 }
 
 .square {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   border: 2px solid #eee;
   border-radius: 5px;
   display: grid;
   place-items: center;
   cursor: pointer;
-  font-size: 48px;
+  font-size: 60px;
+}
+
+.turn-options {
+  display: flex;
 }
