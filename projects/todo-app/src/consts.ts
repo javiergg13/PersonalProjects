@@ -1,7 +1,8 @@
 export const TODO_FILTERS = {
   ALL: 'all',
   ACTIVE: 'active',
-  COMPLETED: 'completed'
+  COMPLETED: 'completed',
+  PARTIAL: 'partial'
 } as const
 
 export const FILTERS_BUTOONS = {
