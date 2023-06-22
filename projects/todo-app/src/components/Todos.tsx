@@ -1,25 +1,40 @@
-import { type TodoId, type ListOfTodos, type Todo as TodoType } from '../types';
-import { Todo } from './Todo';
+import { type Todo as TodoType } from '../types';
+import { Todo } from './Todo'
+import { useState } from 'react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 interface Props {
-  todos: ListOfTodos
-  onToggleCompletedTodo: ({ id, completed }: Pick<TodoType, 'id' | 'completed'>) => void
-  onRemoveTodo: ({ id }: TodoId) => void
+  todos: TodoType[]
+  setCompletedTodo: (id: string, completed: boolean) => void
+  setTitle: (params: Omit<TodoType, 'completed'>) => void
+  removeTodo: (id: string) => void
 }
 
-export const Todos: React.FC<Props> = ({ todos, onRemoveTodo, onToggleCompletedTodo }) => {
+export const Todos: React.FC<Props> = ({ todos, removeTodo, setCompletedTodo, setTitle }) => {
+  const [isEditing, setIsEditing] = useState('')
+  const [parent] = useAutoAnimate()
+  
   return (
-    <ul className='todo-list'>
-      {todos.map((todo) => (
-        <li key={todo.id}
-          className={`${todo.completed ? 'completed' : ''}`}>
+    <ul className='todo-list' ref={parent}>
+      {todos?.map((todo) => (
+        <li 
+          key={todo.id}
+          onDoubleClick={() => setIsEditing(todo.id)}
+          className={`
+            ${todo.completed ? 'completed' : ''}
+            ${isEditing === todo.id ? 'editing' : ''}
+          `}
+        >
           <Todo 
             key={todo.id}
             id={todo.id}
             title={todo.title}
             completed={todo.completed}
-            onToggleCompletedTodo={onToggleCompletedTodo}
-            onRemoveTodo={onRemoveTodo}
+            setCompleted={setCompletedTodo}
+            removeTodo={removeTodo}
+            setTitle={setTitle}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
           />
         </li>
       ))}

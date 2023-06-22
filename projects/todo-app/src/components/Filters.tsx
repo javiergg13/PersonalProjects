@@ -9,7 +9,6 @@ interface Props {
 export const Filters: React.FC<Props> = ({ filterSelected, onFilterChange }) => {
   const handleClick = (filter: FilterValue) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    debugger
     onFilterChange(filter)
   }
 
