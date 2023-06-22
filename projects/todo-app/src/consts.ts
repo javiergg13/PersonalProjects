@@ -5,7 +5,7 @@ export const TODO_FILTERS = {
   PARTIAL: 'partial'
 } as const
 
-export const FILTERS_BUTOONS = {
+export const FILTERS_BUTTONS = {
   [TODO_FILTERS.ALL]: {
     literal: 'Todos',
     href: `/?filter=${TODO_FILTERS.ALL}`

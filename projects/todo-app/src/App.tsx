@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Todos } from './components/Todos'
-import { FilterValue, type TodoId, type Todo as TodoType } from './types'
+import { FilterValue, TodoTitle, type TodoId, type Todo as TodoType } from './types'
 import { TODO_FILTERS } from './consts'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
@@ -25,7 +25,18 @@ const mockTodos = [
 
 const App = (): JSX.Element => {
   const [todos, setTodos] = useState(mockTodos)
-  const [filterSelected, setFilterSelected] = useState<FilterValue>(TODO_FILTERS.ALL)
+  const [filterSelected, setFilterSelected] = useState<FilterValue>(() => {
+    // read from url query params using URLSearchParams
+    const params = new URLSearchParams(window.location.search)
+    const filter = params.get('filter') as FilterValue | null
+    if (filter === null) return TODO_FILTERS.ALL
+    // check filter is valid, if not return ALL
+    return Object
+      .values(TODO_FILTERS)
+      .includes(filter)
+      ? filter
+      : TODO_FILTERS.ALL
+  })
 
   const handleRemove = ({ id }: TodoId) => {
     const newTodos = todos.filter(todo => todo.id !== id)
@@ -51,14 +62,17 @@ const App = (): JSX.Element => {
 
   const handleFilterChange = (filter: FilterValue): void => {
     setFilterSelected(filter)
+    const params = new URLSearchParams(window.location.search)
+    params.set('filter', filter)
+    window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`)
   }
 
-  const handleRemoveAllCompleted = (): void => {
+  const handleClearCompleted = (): void => {
     const newTodos = todos.filter(todo => !todo.completed)
     setTodos(newTodos)
   }
 
-  const handleAddTodo = ({ title }: TodoType): void => {
+  const handleAddTodo = ({ title }: TodoTitle): void => {
     const newTodo = {
       id: crypto.randomUUID(),
       title,
@@ -81,7 +95,7 @@ const App = (): JSX.Element => {
 
   return (
     <div className='todoapp'>
-      <Header onAddTodo={handleAddTodo}/>
+      <Header saveTodo={handleAddTodo}/>
       <Todos 
         onToggleCompletedTodo={handleCompleted}
         onRemoveTodo={handleRemove}
@@ -91,7 +105,7 @@ const App = (): JSX.Element => {
         activeCount={activeCount}
         completedCount={completedCount}
         filterSelected={filterSelected}
-        onClearCompleted={handleRemoveAllCompleted}
+        onClearCompleted={handleClearCompleted}
         handleFilterChange={handleFilterChange}
       />
     </div>
