@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 
+type ItemID = `${string}-${string}-${string}-${string}-${string}`
+
 interface Item {
-  id: `${string}-${string}-${string}-${string}-${string}`
+  id: ItemID
   timestamp: number
   text: string
 }
@@ -51,12 +53,17 @@ function App() {
     input.value = ''
   }
 
+  const createHandleRemoveItem = (id: ItemID) => () => {
+    setItems(prevItems => {
+      return prevItems.filter(currentItem => currentItem.id !== id)
+    })
+  }
 
   return (
     <main>
       <aside>
         <h2>Añadir y eliminar elementos de una lista</h2>
-        <form onSubmit={handleSubmit}>
+        <form aria-label='Añadir elementos a la lista' onSubmit={handleSubmit}>
           <label>
             Elemento a introducir:
             <input
@@ -74,17 +81,28 @@ function App() {
 
       <section>
         <h2>Lista de elementos</h2>
-        <ul>
-          {
-            items.map(item => {
-              return (
-                <li key={item.id}>
-                  {item.text}
-                </li>
-              )
-            })
-          }
-        </ul>
+        {
+          items.length === 0 ? (
+            <p>
+              <strong>No hay elementos en la lista.</strong>
+            </p>
+          ) : (
+            <ul>
+              {
+                items.map(item => {
+                  return (
+                    <li key={item.id}>
+                      {item.text}
+                      <button onClick={createHandleRemoveItem(item.id)}>
+                        ❌
+                      </button>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          )
+        }
       </section>
     </main>
   )
